@@ -29,6 +29,8 @@ public class Cliente {
 	@Column(name = "status", nullable = false, length = 30)
 	private ClienteStatus status;
 
+	protected Cliente(){}
+	
 	public Cliente(String nome, String cpf) {
 		Verificador.naoNulo(nome, "nome do cliente");
 		Verificador.naoNulo(cpf, "CPF do cliente");
@@ -37,6 +39,22 @@ public class Cliente {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.status = ClienteStatus.ATIVO;
+	}
+	
+	public void setCpf(String cpf){
+		this.cpf = cpf;
+		Verificador.naoNulo(cpf, "CPF do cliente");
+		Verificador.cpf(cpf);
+	}
+	
+	public void setNome(String nome){
+		Verificador.naoNulo(nome, "nome do cliente");
+		this.nome = nome;
+	}
+	
+	
+	public Long getId(){
+		return this.id;
 	}
 
 	public String getNome() {

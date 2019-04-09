@@ -15,6 +15,12 @@ public class ProdutoDTO implements Serializable {
 		super();
 
 	}
+	
+	public ProdutoDTO(String codigo, String nome, Double valor) {
+		this.codigo = codigo;
+		this.nome = nome;
+		this.valor = valor;
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -37,12 +43,6 @@ public class ProdutoDTO implements Serializable {
 	}
 
 	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public ProdutoDTO(String codigo, String nome, Double valor) {
-		this.codigo = codigo;
-		this.nome = nome;
 		this.valor = valor;
 	}
 

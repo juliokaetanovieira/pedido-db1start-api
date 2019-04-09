@@ -17,9 +17,9 @@ public class ProdutoResource {
 	@Autowired
 	private ProdutoService produtoService;
 	
-	@GetMapping
-	public List<ProdutoDTO> getAll() {
-		return produtoService.getAll();
+	@GetMapping(value= "/codigo")
+	public List<ProdutoDTO> getAllCodigo() {
+		return this.getByCodigo();
 	}
 	
 }
