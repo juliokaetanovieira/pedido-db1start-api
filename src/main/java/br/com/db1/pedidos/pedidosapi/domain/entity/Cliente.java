@@ -29,7 +29,7 @@ public class Cliente {
 	@Column(name = "status", nullable = false, length = 30)
 	private ClienteStatus status;
 
-	protected Cliente(){}
+	protected Cliente() {}
 	
 	public Cliente(String nome, String cpf) {
 		Verificador.naoNulo(nome, "nome do cliente");
@@ -40,23 +40,22 @@ public class Cliente {
 		this.cpf = cpf;
 		this.status = ClienteStatus.ATIVO;
 	}
-	
-	public void setCpf(String cpf){
-		this.cpf = cpf;
+
+	public void setCpf(String cpf) {
 		Verificador.naoNulo(cpf, "CPF do cliente");
 		Verificador.cpf(cpf);
+		this.cpf = cpf;
 	}
 	
-	public void setNome(String nome){
-		this.nome = nome;
+	public void setNome(String nome) {
 		Verificador.naoNulo(nome, "nome do cliente");
-		
+		this.nome = nome;
 	}
 	
-	public Long getId(){
-		return this.id;
+	public Long getId() {
+		return id;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -71,5 +70,9 @@ public class Cliente {
 
 	public boolean isAtivo() {
 		return ClienteStatus.ATIVO.equals(this.status);
+	}
+
+	public void marcarComoExcluido() {		
+		this.status = ClienteStatus.EXCLUIDO;		
 	}
 }

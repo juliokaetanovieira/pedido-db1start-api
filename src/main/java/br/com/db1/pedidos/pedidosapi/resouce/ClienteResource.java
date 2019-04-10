@@ -1,4 +1,4 @@
-package br.com.db1.pedidos.pedidosapi.resources;
+package br.com.db1.pedidos.pedidosapi.resouce;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import br.com.db1.pedidos.pedidosapi.domain.entity.ClienteStatus;
 import br.com.db1.pedidos.pedidosapi.service.ClienteService;
 
 @RestController
-@RequestMapping(value = "/api/clientes")
+@RequestMapping(value="/api/clientes")
 public class ClienteResource {
 	
 	@Autowired
@@ -28,25 +28,24 @@ public class ClienteResource {
 	public List<ClienteDTO> getAllActive() {
 		return clienteService.getAllActive();
 	}
-	
+
 	@GetMapping
-	public List<ClienteDTO> getByStatus(@RequestParam("status") ClienteStatus status){
-		return clienteService.getByStatus(status);
+	public List<ClienteDTO> getByStatus(@RequestParam("status") ClienteStatus status) {
+		return clienteService.getByStatus(status);		
 	}
 	
 	@PostMapping
-	public ClienteDTO post(@RequestBody ClienteDTO body){
+	public ClienteDTO post(@RequestBody ClienteDTO body) {
 		return clienteService.salvar(body);
 	}
 	
 	@PutMapping(value="/{id}")
-	public ClienteDTO put(@PathVariable("id") Long id,@RequestBody ClienteDTO body){
+	public ClienteDTO put(@PathVariable("id") Long id,@RequestBody ClienteDTO body) {
 		return clienteService.alterar(id, body);
 	}
 	
-	@DeleteMapping(value="/{id}")
-	public ClienteDTO put(@PathVariable("id") Long id){
-		return clienteService.deletar(id);
+	@DeleteMapping(value ="/{id}")
+	public void delete(@PathVariable("id") Long id) {
+		clienteService.delete(id);
 	}
-	
 }

@@ -1,28 +1,38 @@
 package br.com.db1.pedidos.pedidosapi.domain.dto;
 
-
 import java.io.Serializable;
 
 import br.com.db1.pedidos.pedidosapi.domain.entity.ClienteStatus;
 
 public class ClienteDTO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
-	public static final long serialVersionUID = 23L;
-			
 	private Long id;
+
 	private String nome;
+
 	private String cpf;
+
 	private ClienteStatus status;
 
 	public ClienteDTO() {
-		super();
 	}
-	
+
 	public ClienteDTO(Long id, String nome, String cpf, ClienteStatus status) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.status = status;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -40,7 +50,7 @@ public class ClienteDTO implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public ClienteStatus getStatus() {
 		return status;
 	}
@@ -48,13 +58,4 @@ public class ClienteDTO implements Serializable {
 	public void setStatus(ClienteStatus status) {
 		this.status = status;
 	}
-
-	public ClienteDTO(String nome, String cpf) {
-		this.nome = nome;
-		this.nome = cpf;
-	}
-	
-
-	
-	
 }

@@ -3,6 +3,7 @@ package br.com.db1.pedidos.pedidosapi.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.ConstraintDeclarationException;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,18 @@ public class ClienteService {
 	public List<ClienteDTO> getAllActive() {
 		return this.getByStatus(ClienteStatus.ATIVO);
 	}
-	
+
 	public List<ClienteDTO> getByStatus(ClienteStatus status) {
-		return clienteRepository.findByStatus(status).stream().map(
-				cliente -> this.clienteToDto(cliente))
+		return clienteRepository.findByStatus(status).stream().map(cliente -> this.clienteToDto(cliente))
 				.collect(Collectors.toList());
 	}
-	
+
 	public ClienteDTO salvar(ClienteDTO dto) {
 		Cliente cliente = new Cliente(dto.getNome(), dto.getCpf());
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		return this.clienteToDto(clienteSalvo);
 	}
-	
+
 	private ClienteDTO clienteToDto(Cliente cliente) {
 		return new ClienteDTO(cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getStatus());
 	}
@@ -45,18 +45,15 @@ public class ClienteService {
 			clienteDatabase.setCpf(body.getCpf());
 			clienteDatabase.setNome(body.getNome());
 			clienteRepository.save(clienteDatabase);
-			return this.clienteToDto(clienteDatabase);			
+			return this.clienteToDto(clienteDatabase);
 		}catch (ConstraintViolationException e) {
 			throw new RuntimeException("CPF Duplicado");
 		}
-		
 	}
-	
-	public ClienteDTO deletar(Long id) {
+
+	public void delete(Long id) {
 		Cliente clienteDatabase = clienteRepository.getOne(id);
+		clienteDatabase.marcarComoExcluido();
 		clienteRepository.save(clienteDatabase);
-		return null;
-
 	}
-
 }

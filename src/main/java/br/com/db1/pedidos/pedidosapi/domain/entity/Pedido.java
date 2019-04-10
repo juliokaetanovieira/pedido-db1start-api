@@ -54,10 +54,11 @@ public class Pedido {
 	public Pedido(String codigo, Cliente cliente) {
 		Verificador.naoNulo(codigo, "c�digo");
 		Verificador.naoNulo(cliente, "cliente");
-		this.verificarClienteAtivo();
+		
 
 		this.codigo = codigo;
 		this.cliente = cliente;
+		this.verificarClienteAtivo();
 		this.novoHistoricoStatus();
 	}
 
