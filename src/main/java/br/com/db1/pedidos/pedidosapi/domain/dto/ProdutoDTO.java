@@ -6,7 +6,8 @@ import java.util.Objects;
 public class ProdutoDTO implements Serializable {
 
 	public static final long serialVersionUID = 23L;
-
+	
+	private Long id;
 	private String codigo;
 	private String nome;
 	private Double valor;
@@ -16,7 +17,8 @@ public class ProdutoDTO implements Serializable {
 
 	}
 	
-	public ProdutoDTO(String codigo, String nome, Double valor) {
+	public ProdutoDTO(Long id, String codigo, String nome, Double valor) {
+		this.id = id;
 		this.codigo = codigo;
 		this.nome = nome;
 		this.valor = valor;

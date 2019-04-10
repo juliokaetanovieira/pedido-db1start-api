@@ -48,10 +48,10 @@ public class Cliente {
 	}
 	
 	public void setNome(String nome){
-		Verificador.naoNulo(nome, "nome do cliente");
 		this.nome = nome;
+		Verificador.naoNulo(nome, "nome do cliente");
+		
 	}
-	
 	
 	public Long getId(){
 		return this.id;

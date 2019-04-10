@@ -3,6 +3,8 @@ package br.com.db1.pedidos.pedidosapi.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +52,10 @@ public class ClienteService {
 		
 	}
 	
-	public void deletar(Long id) {
+	public ClienteDTO deletar(Long id) {
 		Cliente clienteDatabase = clienteRepository.getOne(id);
 		clienteRepository.save(clienteDatabase);
+		return null;
 
 	}
 

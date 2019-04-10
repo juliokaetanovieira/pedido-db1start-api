@@ -44,6 +44,16 @@ public class Produto {
 		this.valor = valor;
 		this.status = ProdutoStatus.ATIVO;
 	}
+	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+		Verificador.naoNulo(codigo, "código do produto");
+		Verificador.naoNulo(nome, "nome do produto");
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public void inativar() {
 		if (!ProdutoStatus.ATIVO.equals(this.status)) {
@@ -70,5 +80,9 @@ public class Produto {
 
 	public ProdutoStatus getStatus() {
 		return status;
+	}
+
+	public Long getId() {		
+		return this.id;
 	}
 }
